@@ -2,22 +2,24 @@
 #include "backend/screen.h"
 #include "frontend/render.h"
 
-// #include <chrono>
-// #include <thread>
+#include <chrono>
+#include <thread>
 
 
 
 int main(int argc, char **argv){
 
+    //backend
     std::string title = "text_box";
-    Screen text_box = Screen(title, 10, 0, 20, 20);
-    Render render = Render();
+    Screen screen = Screen(title, 0, 0, 20, 20);
 
-    // using namespace std::this_thread; // sleep_for, sleep_until
-    // using namespace std::chrono; // nanoseconds, system_clock, seconds
+    //frontend
+    Render screen_render = Render(screen.get_x_start(),screen.get_y_start(),screen.get_x_end(),screen.get_y_end());
+    screen_render.create_box();
 
-    // sleep_for(seconds(10));
 
+
+    //render.terminate();
 
     // initscr(); //iniciar la pantalla
     // noecho(); //evita que se escriba lo que el usuario escribe

@@ -26,7 +26,7 @@ public:
     void set_y_end(int y_end) {this->y_end = y_end;}
     std::string get_title(){return title;}
     int get_x_start(){return x_start;}
-    int set_y_start(){return y_start;}
+    int get_y_start(){return y_start;}
     int get_x_end(){return x_end;}
     int get_y_end(){return y_end;}
 };
