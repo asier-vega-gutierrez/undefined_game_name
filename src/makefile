@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17
 LIBS = -lncurses
 TARGET = main
-OBJS = main.o frontend/render.o
+OBJS = main.o frontend/*.o
 
 all: $(TARGET)
 

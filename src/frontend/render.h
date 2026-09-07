@@ -10,13 +10,14 @@ class Render {
 private:
 
     WINDOW *win = {};
-    int initialize(int x_sta, int y_sta, int x_end, int y_end);
+    
     
 public:
 
-    Render(int x_sta, int y_sta, int x_end, int y_end){
-        initialize(x_sta, y_sta, x_end, y_end);
+    Render(){
+
     };
+    int initialize(int x_sta, int y_sta, int x_end, int y_end);
     int terminate();
     int update();
     int create_box();

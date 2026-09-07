@@ -1,21 +1,32 @@
 
-#include "backend/screen.h"
+#include "backend/board.h"
+#include "backend/console.h"
+#include "backend/bar.h"
 #include "frontend/render.h"
+#include "frontend/screen.h"
 
 #include <chrono>
 #include <thread>
+
+#include <curses.h>
 
 
 
 int main(int argc, char **argv){
 
-    //backend
-    std::string title = "text_box";
-    Screen screen = Screen(title, 0, 0, 20, 20);
+    //Primero se inicializa la pantalla para obtenr la propiesdes de la pantalla del usuario
+    Screen screen = Screen();
 
-    //frontend
-    Render screen_render = Render(screen.get_x_start(),screen.get_y_start(),screen.get_x_end(),screen.get_y_end());
-    screen_render.create_box();
+    //Segundo se inicializa toda la parte del backend
+    std::string title = "text_box";
+    Board board = Board(title, 0, 0, 5, 5); //solo esta pantalla tendra altura y longitud variables, el resto fijas
+    Bar bar = Bar(title, 50, 0, screen.get_x_max(), screen.get_y_max());
+    Console console = Console(title, 0, 30, bar.get_x_start(), screen.get_y_max());
+
+    //Tercero se iniciliza la parte grafica
+    Render board_render = Render();
+    board_render.initialize(board.get_x_start(),board.get_y_start(),screen.get_x_max(),screen.get_y_max());
+    board_render.create_box();
 
 
 
