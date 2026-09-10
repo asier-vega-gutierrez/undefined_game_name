@@ -11,16 +11,19 @@ private:
 
     WINDOW *win = {};
     
-    
 public:
 
     Render(){
 
     };
+    ~Render() {
+        terminate();
+    }
     int initialize(int x_sta, int y_sta, int x_end, int y_end);
     int terminate();
     int update();
     int create_box();
+    char get_input();
     
 };
 

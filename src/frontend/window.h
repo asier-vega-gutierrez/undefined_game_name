@@ -3,19 +3,23 @@
 #define _SCREEN_H_
 
 // Esta clase se ocupa de identificar las propiedaes de la pantalla del usuario
-class Screen{
+class Window{
 private:
+
+    WINDOW *win;
     int x_max, y_max;
 
 public:
 
-    Screen(){
+    Window(){
         initialize();
+        // terminate();
     }
     int get_x_max(){return x_max;}
     int get_y_max(){return y_max;}
     int initialize();
     int terminate();
+    char get_input();
 
 };
 

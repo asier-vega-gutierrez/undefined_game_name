@@ -1,9 +1,9 @@
-#include "backend/interface.h"
+#include "interface.h"
 
 #ifndef _CONSOLE_H_
 #define _CONSOLE_H_
 
-class Console: Interface {
+class Console: public Interface {
 
 private:
 

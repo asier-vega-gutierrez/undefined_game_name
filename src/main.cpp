@@ -3,103 +3,65 @@
 #include "backend/console.h"
 #include "backend/bar.h"
 #include "frontend/render.h"
-#include "frontend/screen.h"
-
-#include <chrono>
-#include <thread>
+#include "frontend/window.h"
 
 #include <curses.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <thread>
+#include <chrono>
+
+//https://www.viget.com/articles/c-games-in-ncurses-using-multiple-windows
 
 
+void my_handler(int s){
+    printf("Ending on key %d\n",s);
+}
 
 int main(int argc, char **argv){
 
-    //Primero se inicializa la pantalla para obtenr la propiesdes de la pantalla del usuario
-    Screen screen = Screen();
+    // Primero se inicializa la pantalla para obtener la propiesdes de la pantalla del usuario
+    Window win = Window();
 
     //Segundo se inicializa toda la parte del backend
     std::string title = "text_box";
-    Board board = Board(title, 0, 0, 5, 5); //solo esta pantalla tendra altura y longitud variables, el resto fijas
-    Bar bar = Bar(title, 50, 0, screen.get_x_max(), screen.get_y_max());
-    Console console = Console(title, 0, 30, bar.get_x_start(), screen.get_y_max());
+    Board board = Board(title, 0, 0, 10, 10); //solo esta pantalla tendra altura y longitud variables, el resto fijas
+    Bar bar = Bar(title, board.get_x_end(), 0, win.get_x_max(), win.get_y_max());
+    //Console console = Console(title, 0, 30, bar.get_x_start(), screen.get_y_max());
 
     //Tercero se iniciliza la parte grafica
     Render board_render = Render();
-    board_render.initialize(board.get_x_start(),board.get_y_start(),screen.get_x_max(),screen.get_y_max());
+    board_render.initialize(board.get_x_start(),board.get_y_start(),board.get_x_end(),board.get_y_end());
     board_render.create_box();
+    Render bar_render = Render();
+    bar_render.initialize(bar.get_x_start(),bar.get_y_start(),bar.get_x_end(),bar.get_y_end());
+    bar_render.create_box();
 
 
 
-    //render.terminate();
+    //Cuatro bucle de la aplicacion
+    bool running = true;
+    while (running) {
+        
+        int board_key = board_render.get_input();
+        if (board_key == 'e') {
+            running = false;
+        }
+        int bar_key = bar_render.get_input();
+        if (bar_key == 'e') {
+            running = false;
+        }
 
-    // initscr(); //iniciar la pantalla
-    // noecho(); //evita que se escriba lo que el usuario escribe
-    // curs_set(0); //eliminar el cursor
+        // board_render.update();
+        // bar_render.update();
+    }
 
-    // int x_max, y_max;
-    // getmaxyx(stdscr, y_max, x_max);
+    board_render.terminate();
+    bar_render.terminate();
+    endwin();
 
-    // WINDOW *win = newwin(y_max, x_max, 0, 0);
-    // box(win, 0, 0);
-
-    // mvwprintw(win, 0, 2, " Menu ");
-    // print_options(win,1,1,1,1);
-
-
-    // //Selecto de opciones del menu
-    // char presed_key = {0};
-    // while (presed_key = wgetch(win)){
-    //     switch (presed_key){
-    //     case 'n':
-    //         wattron(win, A_STANDOUT);
-    //         mvwprintw(win, 3, 4, "New game");
-    //         wattroff(win, A_STANDOUT);
-    //         print_options(win,0,1,1,1);
-    //         break;
-    //     case 'c':
-    //         wattron(win, A_STANDOUT);
-    //         mvwprintw(win, 4, 4, "Continue");
-    //         wattroff(win, A_STANDOUT);
-    //         print_options(win,1,0,1,1);
-    //         break;
-    //     case 'o':
-    //         wattron(win, A_STANDOUT);
-    //         mvwprintw(win, 5, 4, "Options");
-    //         wattroff(win, A_STANDOUT);
-    //         print_options(win,1,1,0,1);
-    //         break;
-    //     case 'e':
-    //         wattron(win, A_STANDOUT);
-    //         mvwprintw(win, 6, 4, "Exit");
-    //         wattroff(win, A_STANDOUT);
-    //         print_options(win,1,1,1,0);
-    //         break;
-    //     default:
-    //         print_options(win,1,1,1,1);
-    //         break;
-    //     }
-    // }
-    
-    // endwin(); //terminar la pantalla
-    // return 0;
+    return 0;
 
 }
-
-
-// Segun que varible se le pase vuelve a pintar el menu
-// int print_options(WINDOW *win, bool n, bool c, bool o, bool e){
-//     if (n == true) {
-//         mvwprintw(win, 3, 4, "New game");
-//     }
-//     if (c == true) {
-//         mvwprintw(win, 4, 4, "Continue");
-//     }
-//     if (o == true) {
-//         mvwprintw(win, 5, 4, "Options");
-//     }
-//     if (e == true) {
-//         mvwprintw(win, 6, 4, "Exit");
-//     }
-//     return 0;
-// }
-    
