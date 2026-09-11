@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17
 LIBS = -lncurses
 TARGET = main
-BIN_DIR = bin
+BIN_DIR = ../bin
 
 # Find all C++ source files across directories
 SRCS = main.cpp $(wildcard frontend/*.cpp) $(wildcard backend/*.cpp)
