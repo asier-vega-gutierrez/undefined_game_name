@@ -24,6 +24,8 @@ public:
     int update();
     int create_box();
     char get_input();
+    int resize(int x_new, int y_new);
+    int relocate(int x_new, int y_new);
     
 };
 

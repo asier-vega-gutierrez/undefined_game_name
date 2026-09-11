@@ -13,13 +13,15 @@ public:
 
     Window(){
         initialize();
-        // terminate();
+    }
+    ~Window() {
+        terminate();
     }
     int get_x_max(){return x_max;}
     int get_y_max(){return y_max;}
     int initialize();
     int terminate();
-    char get_input();
+    int check_size();
 
 };
 

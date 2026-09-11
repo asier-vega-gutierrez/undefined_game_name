@@ -11,9 +11,20 @@ int Window::initialize(){
 }
 
 int Window::terminate(){
-    endwin();
+    if (this->win){
+        delwin(this->win); //eliminar la pantalla
+        win = nullptr; //no aseguramos de que el puntero desaparezca
+    }
+    return 0;
 }
 
-char Window::get_input(){
-    return wgetch(this->win);
+int Window::check_size(){
+    int y_new, x_new;
+    getmaxyx(stdscr, y_new, x_new);
+    if(this->y_max != y_new || this->x_max != x_new){
+        this->y_max = y_new;
+        this->x_max = x_new;
+        return 0;
+    }
+    return 1;
 }
