@@ -14,7 +14,7 @@ int Render::initialize(int x_sta, int y_sta, int x_end, int y_end){
 int Render::terminate(){
     if (this->win){
         delwin(this->win); //eliminar la pantalla
-        win = nullptr;
+        win = nullptr; //asegura que el puntero desaparece
     }
     return 0;
 }
@@ -32,4 +32,11 @@ int Render::create_box(){
 
 char Render::get_input(){
     return wgetch(this->win);
+}
+
+int Render::set_char(char c, int x, int y, int color_pair){
+    wattron(this->win, COLOR_PAIR(color_pair) | A_BOLD);
+    mvwaddch(this->win, y, x, c);
+    wattroff(this->win, COLOR_PAIR(color_pair) | A_BOLD);
+    return 0;
 }

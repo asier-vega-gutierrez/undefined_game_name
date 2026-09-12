@@ -39,12 +39,11 @@ int main(int argc, char **argv){
     console_render.create_box();
     
 
-
     //Cuatro bucle de la aplicacion
     bool running = true;
     while (running) {
         
-
+        //deteccion de teclas
         int board_key = board_render.get_input();
         if (board_key == 'e') {
             running = false;
@@ -58,10 +57,14 @@ int main(int argc, char **argv){
             running = false;
         }
 
+        
+        board_render.set_char('@', 5, 5, window.get_rb());
 
-        // board_render.update();
-        // bar_render.update();
-        // console_render.update();
+        board_render.update();
+        bar_render.update();
+        console_render.update();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
     board_render.terminate();

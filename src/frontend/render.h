@@ -9,7 +9,7 @@ class Render {
 
 private:
 
-    WINDOW *win = {};
+    WINDOW *win = nullptr;
     
 public:
 
@@ -26,6 +26,7 @@ public:
     char get_input();
     int resize(int x_new, int y_new);
     int relocate(int x_new, int y_new);
+    int set_char(char c, int x, int y, int color_pair);
     
 };
 
