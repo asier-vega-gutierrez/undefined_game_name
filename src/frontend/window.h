@@ -20,9 +20,7 @@ private:
 
 public:
 
-    Window(){
-        initialize();
-    }
+    Window() = default; // se deve inicializar por separado
     ~Window() {
         terminate();
     }

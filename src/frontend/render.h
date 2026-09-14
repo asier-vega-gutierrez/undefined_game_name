@@ -13,9 +13,10 @@ private:
     
 public:
 
-    Render(){
-
-    };
+    Render() = default;
+    Render(int x_sta, int y_sta, int x_end, int y_end){
+        initialize(x_sta, y_sta, x_end, y_end);
+    }
     ~Render() {
         terminate();
     }

@@ -5,13 +5,14 @@
 
 class Interface{
 private:
-    std::string title;
-    int x_start;
-    int y_start;
-    int x_end;
-    int y_end;
+    std::string title = "";
+    int x_start = 0;
+    int y_start = 0;
+    int x_end = 0;
+    int y_end = 0;
     
 public:
+    Interface() = default;
     Interface(std::string title, int x_start, int y_start, int x_end, int y_end){
         this->title = title;
         this->x_start = x_start;

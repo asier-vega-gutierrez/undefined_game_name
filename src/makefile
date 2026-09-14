@@ -5,7 +5,7 @@ TARGET = main
 BIN_DIR = ../bin
 
 # Find all C++ source files across directories
-SRCS = main.cpp $(wildcard frontend/*.cpp) $(wildcard backend/*.cpp)
+SRCS = $(wildcard *.cpp) $(wildcard frontend/*.cpp) $(wildcard backend/*.cpp)
 
 # Place all object files (intermediate binaries) into the bin folder
 OBJS = $(addprefix $(BIN_DIR)/, $(notdir $(SRCS:.cpp=.o)))
