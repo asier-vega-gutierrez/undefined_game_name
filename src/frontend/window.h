@@ -6,7 +6,7 @@
 class Window{
 private:
 
-    WINDOW *win;
+    WINDOW *win = nullptr;
     int x_max, y_max;
     //colores "bub" texto azur fondo negro
     int bub = 1;

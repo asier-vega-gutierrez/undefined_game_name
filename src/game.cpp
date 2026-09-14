@@ -38,7 +38,7 @@ int Game::terminate(){
     board_render.terminate();
     bar_render.terminate();
     console_render.terminate();
-    endwin();
+    window.terminate();
     return 0;
 }
 
@@ -61,11 +61,11 @@ int Game::run(){
         }
 
         
-        board_render.set_char('@', 5, 5, window.get_rb());
+        //board_render.set_char('@', 5, 5, window.get_rb());
 
-        board_render.update();
-        bar_render.update();
-        console_render.update();
+        // board_render.update();
+        // bar_render.update();
+        // console_render.update();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }

@@ -17,6 +17,7 @@ int Window::terminate(){
         delwin(this->win); //eliminar la pantalla
         win = nullptr; //no aseguramos de que el puntero desaparezca
     }
+    endwin();
     return 0;
 }
 

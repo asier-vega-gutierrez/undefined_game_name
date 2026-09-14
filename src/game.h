@@ -25,9 +25,9 @@ public:
     Game(){
         initialize();
     }
-    // ~Game(){
-    //     // terminate();
-    // }
+    ~Game(){
+        terminate();
+    }
 
     int initialize();
     int terminate();
