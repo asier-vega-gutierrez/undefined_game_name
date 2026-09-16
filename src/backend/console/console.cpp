@@ -16,11 +16,10 @@ int Console::input_mannagment(int key){
 }
 
 void Console::load_menu(){
-    int init_x = 2;
-    int init_y = 2;
-    int offset_x = 5;
-    StringItem attack = StringItem("Attack", init_x, init_y);
-    StringItem defend = StringItem("Defend", init_x + 5 + offset_x , init_y);
+    StringItem attack = StringItem("Attack", 2, 2);
+    StringItem defend = StringItem("Defend", 12 , 2);
+    StringItem use = StringItem("Use", 22 , 2);
     this->menu[0] = attack;
     this->menu[1] = defend;
+    this->menu[2] = use;
 }
