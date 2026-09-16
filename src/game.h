@@ -1,9 +1,8 @@
 #include "backend/board.h"
-#include "backend/console.h"
+#include "backend/console/console.h"
 #include "backend/bar.h"
 #include "frontend/render.h"
 #include "frontend/window.h"
-
 
 #ifndef _GAME_H_
 #define _GAME_H_
@@ -20,6 +19,7 @@ private:
     Render bar_render;
     Render console_render;
 
+
 public:
 
     Game(){
@@ -32,6 +32,10 @@ public:
     int initialize();
     int terminate();
     int run();
+
+    int inputs();
+    int control();
+    int outputs();
 
 };
 

@@ -2,7 +2,7 @@
 #include <chrono>
 
 #include "backend/board.h"
-#include "backend/console.h"
+#include "backend/console/console.h"
 #include "backend/bar.h"
 #include "frontend/render.h"
 #include "frontend/window.h"
@@ -45,31 +45,46 @@ int Game::terminate(){
 int Game::run(){
     running = true;
     while (running) {
-        
-        // deteccion de teclas
-        int board_key = board_render.get_input();
-        if (board_key == 'e') {
-            running = false;
-        }
-        int bar_key = bar_render.get_input();
-        if (bar_key == 'e') {
-            running = false;
-        }
-        int console_key = console_render.get_input();
-        if (console_key == 'e') {
-            running = false;
-        }
+
+        inputs();
+
+        outputs();
+
 
         
-        //board_render.set_char('@', 5, 5, window.get_rb());
 
-        // board_render.update();
-        // bar_render.update();
-        // console_render.update();
+        board_render.update();
+        bar_render.update();
+        console_render.update();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
-    running = false;
     terminate();
+    return 0;
+}
+
+
+int Game::inputs(){
+    int board_key = board_render.get_input();
+    int bar_key = bar_render.get_input();
+    int console_key = console_render.get_input();
+
+    console.input_mannagment(console_key);
+
+    if(board_key == 'e' || bar_key == 'e' || console_key == 'e'){
+        running = false;
+    }
+    return 0;
+}
+
+int Game::outputs(){
+
+    board_render.set_char('@', 5, 5, window.get_rb());
+
+    StringItem* console_menu = console.get_menu();
+    for (int i = 0; i < 5; i++){
+        console_render.set_string(console_menu[i].get_text(), console_menu[i].get_x(), console_menu[i].get_y(), window.get_rb());
+    }
+
     return 0;
 }
