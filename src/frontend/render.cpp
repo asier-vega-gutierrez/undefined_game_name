@@ -9,7 +9,7 @@ int Render::initialize(int x_sta, int y_sta, int x_end, int y_end){
     this->y_sta = y_sta;
     int height = y_end - y_sta;
     int width = x_end - x_sta;
-    this->win = newwin(height, width, y_sta, x_sta); //primero los valores del final y leugo los de incio
+    this->win = newwin(height, width, y_sta, x_sta);
     nodelay(this->win, TRUE);
     return 0;
 }

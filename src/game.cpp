@@ -16,12 +16,6 @@ int Game::initialize(){
     // Primero se inicializa la pantalla para obtener la propiedades de la pantalla del usuario
     window.initialize();
 
-    //Segundo se construyen toda la parte del backend
-    std::string title = "text_box";
-    bar = Bar(title, window.get_x_max() * 0.7, 0, window.get_x_max(), window.get_y_max());
-    console = Console(title, 0, window.get_y_max() * 0.8, bar.get_x_start(), window.get_y_max());
-    board = Board(title, 0, 0, bar.get_x_start(), console.get_y_start());
-
     //Tercero se iniciliza la parte grafica
     board_render.initialize(board.get_x_start(),board.get_y_start(),board.get_x_end(),board.get_y_end());
     board_render.create_box();
@@ -82,7 +76,7 @@ int Game::outputs(){
     board_render.set_char('@', 5, 5, window.get_rb());
 
     StringItem* console_menu = console.get_menu();
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < console.get_elements(); i++){
         console_render.set_string(console_menu[i].get_text(), console_menu[i].get_x(), console_menu[i].get_y(), window.get_rb());
     }
 
