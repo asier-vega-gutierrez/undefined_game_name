@@ -24,6 +24,9 @@ int Game::initialize(){
     console_render.initialize(console.get_x_start(),console.get_y_start(),console.get_x_end(),console.get_y_end());
     console_render.create_box();
 
+    //Cuarto se pintan los menus y la parte grafica
+    print_menus();
+
     return 0;
 
 }
@@ -75,10 +78,14 @@ int Game::outputs(){
 
     board_render.set_char('@', 5, 5, window.get_rb());
 
-    StringItem* console_menu = console.get_menu();
+
+    return 0;
+}
+
+
+int Game::print_menus(){
     for (int i = 0; i < console.get_elements(); i++){
         console_render.set_string(console_menu[i].get_text(), console_menu[i].get_x(), console_menu[i].get_y(), window.get_rb());
     }
-
     return 0;
 }
