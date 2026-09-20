@@ -1,8 +1,8 @@
-#include "backend/board.h"
-#include "backend/console/console.h"
-#include "backend/bar/bar.h"
-#include "frontend/render.h"
-#include "frontend/window.h"
+#include "interface/board/board.h"
+#include "interface/console/console.h"
+#include "interface/bar/bar.h"
+#include "ncurses/render.h"
+#include "ncurses/window.h"
 #include "const.h"
 
 #ifndef _GAME_H_
