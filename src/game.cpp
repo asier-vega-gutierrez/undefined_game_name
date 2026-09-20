@@ -3,9 +3,10 @@
 
 #include "backend/board.h"
 #include "backend/console/console.h"
-#include "backend/bar.h"
+#include "backend/bar/bar.h"
 #include "frontend/render.h"
 #include "frontend/window.h"
+#include "const.h"
 
 #include "game.h"
 
@@ -76,16 +77,30 @@ int Game::inputs(){
 
 int Game::outputs(){
 
-    board_render.set_char('@', 5, 5, window.get_rb());
+    board_render.set_char('@', 5, 5, RED_BLACK);
 
+
+    //Cambio de algo del menu
+    bar.pos_1_1.set_color(BLUE_BLACK);
+    bar.update_menu();
+    print_menus();
 
     return 0;
 }
 
 
 int Game::print_menus(){
+    StringItem* console_menu = console.get_menu();
     for (int i = 0; i < console.get_elements(); i++){
-        console_render.set_string(console_menu[i].get_text(), console_menu[i].get_x(), console_menu[i].get_y(), window.get_rb());
+        console_render.set_string(console_menu[i].get_text(), console_menu[i].get_x(), console_menu[i].get_y(), console_menu[i].get_color());
     }
+    StringItem* bar_menu = bar.get_menu();
+    for (int i = 0; i < bar.get_elements(); i++){
+        bar_render.set_string(bar_menu[i].get_text(), bar_menu[i].get_x(), bar_menu[i].get_y(), bar_menu[i].get_color());
+    }
+    console_menu = NULL;
+    bar_menu = NULL;
+    delete[] console_menu;
+    delete[] bar_menu;
     return 0;
 }

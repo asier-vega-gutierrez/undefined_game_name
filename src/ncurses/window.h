@@ -8,14 +8,6 @@ private:
 
     WINDOW *win = nullptr;
     int x_max, y_max;
-    //colores "bub" texto azur fondo negro
-    int bub = 1;
-    int rb = 2;
-    int gb = 3;
-    int yb = 4;
-    int mb = 5;
-    int cb = 6;
-    int wb = 6;
 
 
 public:
@@ -30,15 +22,7 @@ public:
     int terminate();
     int check_size();
     int create_color_pairs();
-    //colores "bub" texto azur fondo negro
-    int get_bub(){return bub;}
-    int get_rb(){return rb;}
-    int get_gb(){return gb;}
-    int get_yb(){return yb;}
-    int get_mb(){return mb;}
-    int get_cb(){return cb;}
-    int get_wb(){return wb;}
-
+    
 };
 
 #endif

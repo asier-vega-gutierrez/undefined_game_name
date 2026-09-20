@@ -12,7 +12,7 @@ SRCS = $(shell find . -name "*.cpp")
 OBJS = $(addprefix $(BIN_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 # Tell Make where to look for source files in subdirectories
-vpath %.cpp . frontend backend backend/console
+vpath %.cpp . ncurses interface interface/console interface/bar interface/board
 
 all: $(BIN_DIR) $(TARGET)
 

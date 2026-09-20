@@ -1,8 +1,9 @@
 #include "backend/board.h"
 #include "backend/console/console.h"
-#include "backend/bar.h"
+#include "backend/bar/bar.h"
 #include "frontend/render.h"
 #include "frontend/window.h"
+#include "const.h"
 
 #ifndef _GAME_H_
 #define _GAME_H_
@@ -22,12 +23,7 @@ private:
     // FRONTEND
     Render board_render;
     Render bar_render;
-    Render console_render;
-
-    // MENUS
-    StringItem* console_menu = console.get_menu();
-
-
+    Render console_render;  
 
 
 
@@ -37,8 +33,6 @@ public:
         initialize();
     }
     ~Game(){
-        console_menu = NULL;
-        delete[] console_menu;
         terminate();
     }
 
