@@ -11,9 +11,9 @@ int Bar::input_mannagment(int key){
 }
 
 void Bar::load_menu(){
-    this->pos_1_1 = StringItem("Health:", 5 , 2, RED_BLACK);
-    this->pos_2_1 = StringItem("Mana:", 5 , 3, RED_BLACK);
-    this->pos_3_1 = StringItem("Stamina:", 5 , 4, RED_BLACK);
+    this->pos_1_1 = StringItem("Health:", 5 , 2, COLOR_RED_BLACK);
+    this->pos_2_1 = StringItem("Mana:", 5 , 3, COLOR_RED_BLACK);
+    this->pos_3_1 = StringItem("Stamina:", 5 , 4, COLOR_RED_BLACK);
     update_menu();
 }
 

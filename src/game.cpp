@@ -68,13 +68,10 @@ int Game::run(){
 
 
 int Game::inputs(){
-    // int board_key = board_render.get_input();
-    // int bar_key = bar_render.get_input();
-    // int console_key = console_render.get_input();
 
     int key = window.get_input();
+    
     console.input_mannagment(key);
-    bar.input_mannagment(key);
 
     if(key == 'e'){
         running = false;
@@ -84,11 +81,11 @@ int Game::inputs(){
 
 int Game::outputs(){
 
-    board_render.set_char('@', 5, 5, RED_BLACK);
+    board_render.set_char('@', 5, 5, COLOR_RED_BLACK);
 
 
     //Cambio de algo del menu
-    bar.pos_1_1.set_color(BLUE_BLACK);
+    bar.pos_1_1.set_color(COLOR_BLUE_BLACK);
 
 
     return 0;

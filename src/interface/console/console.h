@@ -26,6 +26,7 @@ public:
     StringItem* get_menu(){return this->menu;}
     int get_elements(){return this->menu_elements;}
     void update_menu();
+    void original_menu();
     StringItem pos_1;
     StringItem pos_2;
     StringItem pos_3;
