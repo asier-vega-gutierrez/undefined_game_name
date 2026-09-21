@@ -16,7 +16,7 @@ int Console::input_mannagment(int key){
             pos_3.set_color(COLOR_RED_WHITE);
             break;
         default:
-            original_menu();
+            reload_menu();
             break;
     }
 
@@ -31,10 +31,11 @@ void Console::load_menu(){
     update_menu();
 }
 
-void Console::original_menu(){
+void Console::reload_menu(){
     pos_1.set_color(COLOR_RED_BLACK);
     pos_2.set_color(COLOR_RED_BLACK);
     pos_3.set_color(COLOR_RED_BLACK);
+    update_menu();
 }
 
 void Console::update_menu(){
