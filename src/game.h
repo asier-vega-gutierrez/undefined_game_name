@@ -14,13 +14,13 @@ private:
     // ESTADOS
     bool running = false;
 
-    // BACKEND
+    // INTERFACE
     Window window; 
     Bar bar = Bar("bar", 90, 0, 120, 30);
     Console console = Console("console", 0, 25, 90, 30);
     Board board = Board("board", 0, 0, 90, 25);
 
-    // FRONTEND
+    // NCURSES
     Render board_render;
     Render bar_render;
     Render console_render;  

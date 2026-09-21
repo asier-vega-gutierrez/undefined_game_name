@@ -18,11 +18,11 @@ int Game::initialize(){
     window.initialize();
 
     //Tercero se iniciliza la parte grafica
-    board_render.initialize(board.get_x_start(),board.get_y_start(),board.get_x_end(),board.get_y_end());
+    board_render.initialize(window.get_win(), board.get_x_start(),board.get_y_start(),board.get_x_end(),board.get_y_end());
     board_render.create_box();
-    bar_render.initialize(bar.get_x_start(),bar.get_y_start(),bar.get_x_end(),bar.get_y_end());
+    bar_render.initialize(window.get_win(), bar.get_x_start(),bar.get_y_start(),bar.get_x_end(),bar.get_y_end());
     bar_render.create_box();
-    console_render.initialize(console.get_x_start(),console.get_y_start(),console.get_x_end(),console.get_y_end());
+    console_render.initialize(window.get_win(), console.get_x_start(),console.get_y_start(),console.get_x_end(),console.get_y_end());
     console_render.create_box();
 
     //Cuarto se pintan los menus y la parte grafica
@@ -49,11 +49,16 @@ int Game::run(){
         outputs();
 
 
-        
+        //Actualizar los menus
+        bar.update_menu();
+        console.update_menu();
+        print_menus();
 
+        // Actualizar los render
         board_render.update();
         bar_render.update();
         console_render.update();
+        
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
@@ -63,13 +68,15 @@ int Game::run(){
 
 
 int Game::inputs(){
-    int board_key = board_render.get_input();
-    int bar_key = bar_render.get_input();
-    int console_key = console_render.get_input();
+    // int board_key = board_render.get_input();
+    // int bar_key = bar_render.get_input();
+    // int console_key = console_render.get_input();
 
-    console.input_mannagment(console_key);
+    int key = window.get_input();
+    console.input_mannagment(key);
+    bar.input_mannagment(key);
 
-    if(board_key == 'e' || bar_key == 'e' || console_key == 'e'){
+    if(key == 'e'){
         running = false;
     }
     return 0;
@@ -82,8 +89,7 @@ int Game::outputs(){
 
     //Cambio de algo del menu
     bar.pos_1_1.set_color(BLUE_BLACK);
-    bar.update_menu();
-    print_menus();
+
 
     return 0;
 }

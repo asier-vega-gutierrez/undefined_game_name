@@ -6,6 +6,8 @@ int Window::initialize(){
     initscr(); //iniciar la pantalla
     noecho(); //evita que se escriba lo que el usuario escribe
     curs_set(0); //eliminar el cursor
+    this->win = stdscr;
+    nodelay(this->win, TRUE);
     start_color();
     getmaxyx(stdscr, this->y_max, this->x_max); //medidas
     create_color_pairs(); //colores de texto y fondo
@@ -19,6 +21,10 @@ int Window::terminate(){
     }
     endwin();
     return 0;
+}
+
+char Window::get_input(){
+    return wgetch(this->win);
 }
 
 int Window::check_size(){
@@ -40,5 +46,13 @@ int Window::create_color_pairs(){
     init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
     init_pair(6, COLOR_CYAN, COLOR_BLACK);
     init_pair(7, COLOR_WHITE, COLOR_BLACK);
+
+    init_pair(8, COLOR_BLUE, COLOR_WHITE);
+    init_pair(9, COLOR_RED, COLOR_WHITE);
+    init_pair(10, COLOR_GREEN, COLOR_WHITE);
+    init_pair(11, COLOR_YELLOW, COLOR_WHITE);
+    init_pair(12, COLOR_MAGENTA, COLOR_WHITE);
+    init_pair(13, COLOR_CYAN, COLOR_WHITE);
+    init_pair(14, COLOR_BLACK, COLOR_WHITE);
     return 0;
 }

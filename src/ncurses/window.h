@@ -9,7 +9,6 @@ private:
     WINDOW *win = nullptr;
     int x_max, y_max;
 
-
 public:
 
     Window() = default; // se deve inicializar por separado
@@ -22,6 +21,8 @@ public:
     int terminate();
     int check_size();
     int create_color_pairs();
+    char get_input();
+    WINDOW* get_win(){return this->win;}
     
 };
 

@@ -17,17 +17,16 @@ private:
 public:
 
     Render() = default;
-    Render(int x_sta, int y_sta, int x_end, int y_end){
-        initialize(x_sta, y_sta, x_end, y_end);
+    Render(WINDOW *win, int x_sta, int y_sta, int x_end, int y_end){
+        initialize(win, x_sta, y_sta, x_end, y_end);
     }
     ~Render() {
         terminate();
     }
-    int initialize(int x_sta, int y_sta, int x_end, int y_end);
+    int initialize(WINDOW *win, int x_sta, int y_sta, int x_end, int y_end);
     int terminate();
     int update();
     int create_box();
-    char get_input();
     int resize(int x_new, int y_new);
     int relocate(int x_new, int y_new);
     int set_char(char c, int x, int y, int color_pair);

@@ -4,12 +4,12 @@
 #include <string>
 
 
-int Render::initialize(int x_sta, int y_sta, int x_end, int y_end){
+int Render::initialize(WINDOW *win, int x_sta, int y_sta, int x_end, int y_end){
     this->x_sta = x_sta;
     this->y_sta = y_sta;
     int height = y_end - y_sta;
     int width = x_end - x_sta;
-    this->win = newwin(height, width, y_sta, x_sta);
+    this->win = subwin(win, height, width, y_sta, x_sta);
     nodelay(this->win, TRUE);
     return 0;
 }
@@ -31,10 +31,6 @@ int Render::create_box(){
     box(this->win, 0, 0);
     update();
     return 0;
-}
-
-char Render::get_input(){
-    return wgetch(this->win);
 }
 
 int Render::set_char(char c, int x, int y, int color_pair){
