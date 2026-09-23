@@ -72,6 +72,8 @@ int Game::inputs(){
     int key = window.get_input();
     
     console.input_mannagment(key);
+    board.input_mannagment(key, window.get_mouse_x_last(), window.get_mouse_y_last());
+
 
     if(key == 'e'){
         running = false;
@@ -84,8 +86,8 @@ int Game::outputs(){
     board_render.set_char('@', 5, 5, COLOR_RED_BLACK);
 
 
-    //Cambio de algo del menu
-    bar.pos_1_1.set_color(COLOR_BLUE_BLACK);
+    // //Cambio de algo del menu
+    // bar.pos_1_1.set_color(COLOR_BLUE_BLACK);
 
 
     return 0;

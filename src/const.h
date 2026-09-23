@@ -33,6 +33,10 @@ const int KEY_NUMBER_7 = 55;
 const int KEY_NUMBER_8 = 56;
 const int KEY_NUMBER_9 = 57;
 
+//Codigo propio para teclas del raton
+const int KEY_BUTTON1_CLICKED = 1; //izquierdo
+const int KEY_BUTTON2_CLICKED = 2; //central
+const int KEY_BUTTON3_CLICKED = 3; //derecho
 
 
 

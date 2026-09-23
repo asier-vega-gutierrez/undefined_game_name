@@ -1,5 +1,6 @@
 #include <curses.h> 
 #include "window.h"
+#include "../const.h"
 
 
 int Window::initialize(){
@@ -7,10 +8,13 @@ int Window::initialize(){
     noecho(); //evita que se escriba lo que el usuario escribe
     curs_set(0); //eliminar el cursor
     this->win = stdscr;
-    nodelay(this->win, TRUE);
-    start_color();
+    nodelay(this->win, TRUE); //Para capturar evetnos de todo tipo
+    start_color(); //colores
+    //Cosas mias
     getmaxyx(stdscr, this->y_max, this->x_max); //medidas
     create_color_pairs(); //colores de texto y fondo
+    keypad(this->win, TRUE); //eventos de raton
+    set_mousemack();
     return 0;
 }
 
@@ -23,8 +27,30 @@ int Window::terminate(){
     return 0;
 }
 
-char Window::get_input(){
-    return wgetch(this->win);
+int Window::get_input(){
+    int key = wgetch(this->win);
+    //Los eventos del raton necesita un procesado aparte
+    if (key == KEY_MOUSE) {
+        MEVENT event;
+        if (getmouse(&event) == OK) {
+            if (event.bstate & BUTTON1_CLICKED) {
+                set_mouse_last(event);
+                return KEY_BUTTON1_CLICKED;
+            }
+            if (event.bstate & BUTTON2_CLICKED) {
+                return KEY_BUTTON2_CLICKED;
+            }
+            if (event.bstate & BUTTON3_CLICKED) {
+                return KEY_BUTTON3_CLICKED;
+            }
+        }
+    }
+    return key;
+}
+
+void Window::set_mouse_last(MEVENT event){
+    this->mouse_x_last = event.x;
+    this->mouse_y_last = event.y;
 }
 
 int Window::check_size(){
@@ -55,4 +81,10 @@ int Window::create_color_pairs(){
     init_pair(13, COLOR_CYAN, COLOR_WHITE);
     init_pair(14, COLOR_BLACK, COLOR_WHITE);
     return 0;
+}
+
+
+void Window::set_mousemack(){
+    mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION | 
+        BUTTON1_CLICKED | BUTTON2_CLICKED | BUTTON2_CLICKED, NULL); //se ven estos eventos del raton
 }
