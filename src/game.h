@@ -40,8 +40,9 @@ public:
     int initialize();
     int terminate();
     int run();
-    int print_menus();
-    int print_board();
+    // int print_menus();
+    // int print_board();
+    int print_interface();
 
     int inputs();
     int control();

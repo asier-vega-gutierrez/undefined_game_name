@@ -1,0 +1,1 @@
+//esta clase tiene la inforamcion de cada casilla (charitem) del borad en el bakc end

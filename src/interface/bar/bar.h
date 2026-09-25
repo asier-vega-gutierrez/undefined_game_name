@@ -30,6 +30,7 @@ public:
     int get_elements(){return this->menu_elements;}
     void update_menu();
     void reload_menu();
+    void set_description(std::string text){this->pos_4.set_text(text);}
     StringItem pos_1_1;
     StringItem pos_2_1;
     StringItem pos_3_1;

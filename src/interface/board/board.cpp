@@ -11,14 +11,17 @@ void Board::init_fill(){
     //rellenamos todos los punteros
     for (int i = 0; i < BOARD_MAX_X; i++) {
         for (int j = 0; j < BOARD_MAX_Y; j++) {
-           this->actual[i][j] = CharItem('a', i+2, j+1, COLOR_RED_BLACK, "None");
+           this->actual[i][j] = CharItem('a', i+BOARD_MIN_X, j+BOARD_MIN_Y, COLOR_RED_BLACK, "None");
         }
     }
 
 }
 
 void Board::input_mannagment(int key, int mouse_x, int mouse_y){
-    
+    if(mouse_x >= BOARD_MIN_X && mouse_y >= BOARD_MIN_Y && mouse_x < BOARD_MAX_X && mouse_y < BOARD_MAX_Y ) {
+        this->x_selected = mouse_x;
+        this->y_selected = mouse_y;
+    }
 }
 
 

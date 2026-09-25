@@ -26,4 +26,3 @@ void Bar::update_menu(){
     this->menu[5] = pos_3_2;
     this->menu[6] = pos_4;
 }
-

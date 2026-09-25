@@ -26,7 +26,7 @@ int Game::initialize(){
     console_render.create_box();
 
     //Cuarto se pintan los menus y la parte grafica
-    print_menus();
+    print_interface();
 
     return 0;
 
@@ -44,15 +44,12 @@ int Game::run(){
     running = true;
     while (running) {
 
-        //Actualizar el board
-        print_board();
-
-        //Actualizar los menus
+        //Actualizar la interfaz
         bar.update_menu();
         console.update_menu();
-        print_menus();
+        print_interface();
 
-
+        //Se lee la entrada de tecaldo y raton
         inputs();
 
         outputs();
@@ -78,7 +75,6 @@ int Game::inputs(){
     console.input_mannagment(key);
     board.input_mannagment(key, window.get_mouse_x_last(), window.get_mouse_y_last());
 
-
     if(key == 'e'){
         running = false;
     }
@@ -97,33 +93,38 @@ int Game::outputs(){
 }
 
 
-int Game::print_menus(){
-    StringItem* console_menu = console.get_menu();
-    for (int i = 0; i < console.get_elements(); i++){
-        console_render.set_string(console_menu[i].get_text(), console_menu[i].get_x(), console_menu[i].get_y(), console_menu[i].get_color());
-    }
-    StringItem* bar_menu = bar.get_menu();
-    for (int i = 0; i < bar.get_elements(); i++){
-        bar_render.set_string(bar_menu[i].get_text(), bar_menu[i].get_x(), bar_menu[i].get_y(), bar_menu[i].get_color());
-    }
-    //Se borra el puntero por que solo pertenece a esta funcion
-    console_menu = NULL;
-    bar_menu = NULL;
-    delete[] console_menu;
-    delete[] bar_menu;
-    return 0;
-}
-
-int Game::print_board(){
-    // board_render.set_char('@', 88, 23, COLOR_RED_BLACK);
+int Game::print_interface(){
+    
+    //Pintado del board
     CharItem** board_chars = board.get_actual();
     for (int i = 0; i < BOARD_MAX_X; i++) {
         for (int j = 0; j < BOARD_MAX_Y; j++) {
            board_render.set_char(board_chars[i][j].get_char(), board_chars[i][j].get_x(), board_chars[i][j].get_y(), board_chars[i][j].get_color());
         }
     }
-
     //no se borra el puntero por que pertenece a board, el se ocupa de borralo
+
+    //Pintado de la conssola
+    StringItem* console_menu = console.get_menu();
+    for (int i = 0; i < console.get_elements(); i++){
+        console_render.set_string(console_menu[i].get_text(), console_menu[i].get_x(), console_menu[i].get_y(), console_menu[i].get_color());
+    }
+
+    //Pintado de la descricion del bar
+    CharItem tile = board.get_selected_tile();
+    bar.set_description(tile.get_description());
+
+    //Pintado del resto del menu del bar
+    StringItem* bar_menu = bar.get_menu();
+    for (int i = 0; i < bar.get_elements(); i++){
+        bar_render.set_string(bar_menu[i].get_text(), bar_menu[i].get_x(), bar_menu[i].get_y(), bar_menu[i].get_color());
+    }
+
+    //Se borra los punteros de console y bar por que solo pertenece a esta funcion
+    console_menu = NULL;
+    bar_menu = NULL;
+    delete[] console_menu;
+    delete[] bar_menu;
 
     return 0;
 }
