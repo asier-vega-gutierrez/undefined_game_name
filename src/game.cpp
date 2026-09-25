@@ -44,15 +44,19 @@ int Game::run(){
     running = true;
     while (running) {
 
-        inputs();
-
-        outputs();
-
+        //Actualizar el board
+        print_board();
 
         //Actualizar los menus
         bar.update_menu();
         console.update_menu();
         print_menus();
+
+
+        inputs();
+
+        outputs();
+
 
         // Actualizar los render
         board_render.update();
@@ -83,11 +87,10 @@ int Game::inputs(){
 
 int Game::outputs(){
 
-    board_render.set_char('@', 5, 5, COLOR_RED_BLACK);
 
+    std::string s = "hola";
+    board.set_actual('@', 5, 5, COLOR_BLUE_BLACK, s);
 
-    // //Cambio de algo del menu
-    // bar.pos_1_1.set_color(COLOR_BLUE_BLACK);
 
 
     return 0;
@@ -103,9 +106,24 @@ int Game::print_menus(){
     for (int i = 0; i < bar.get_elements(); i++){
         bar_render.set_string(bar_menu[i].get_text(), bar_menu[i].get_x(), bar_menu[i].get_y(), bar_menu[i].get_color());
     }
+    //Se borra el puntero por que solo pertenece a esta funcion
     console_menu = NULL;
     bar_menu = NULL;
     delete[] console_menu;
     delete[] bar_menu;
+    return 0;
+}
+
+int Game::print_board(){
+    // board_render.set_char('@', 88, 23, COLOR_RED_BLACK);
+    CharItem** board_chars = board.get_actual();
+    for (int i = 0; i < BOARD_MAX_X; i++) {
+        for (int j = 0; j < BOARD_MAX_Y; j++) {
+           board_render.set_char(board_chars[i][j].get_char(), board_chars[i][j].get_x(), board_chars[i][j].get_y(), board_chars[i][j].get_color());
+        }
+    }
+
+    //no se borra el puntero por que pertenece a board, el se ocupa de borralo
+
     return 0;
 }

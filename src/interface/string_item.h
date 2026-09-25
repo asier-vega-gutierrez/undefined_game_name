@@ -1,7 +1,8 @@
 #include <string>
+#include "../const.h"
 
-#ifndef _MENU_H_
-#define _MENU_H_
+#ifndef _STRING_ITEM_H_
+#define _STRING_ITEM_H_
 
 class StringItem {
 
@@ -9,7 +10,7 @@ private:
     std::string text = "";
     int x = 0;
     int y = 0;
-    int color = 1;
+    int color = COLOR_RED_BLACK;
 
 public:
 

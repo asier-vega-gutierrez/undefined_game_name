@@ -41,6 +41,7 @@ public:
     int terminate();
     int run();
     int print_menus();
+    int print_board();
 
     int inputs();
     int control();

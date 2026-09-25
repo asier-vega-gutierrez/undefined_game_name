@@ -4,6 +4,9 @@
 #define _CONST_H_
 
 
+const int BOARD_MAX_X = 86;
+const int BOARD_MAX_Y = 23;
+
 const int COLOR_BLUE_BLACK = 1;
 const int COLOR_RED_BLACK = 2;
 const int COLOR_GREEN_BLACK = 3;
