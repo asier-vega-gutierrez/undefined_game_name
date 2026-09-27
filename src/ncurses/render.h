@@ -6,13 +6,15 @@
 #ifndef _RENDER_H_
 #define _RENDER_H_
 
+
+// Esta clase se ocupa de pintar por pantalla todo lo necesario
 class Render {
 
 private:
 
-    WINDOW *win = nullptr;
-    int x_sta = 0;
-    int y_sta = 0;
+    WINDOW *win = nullptr; // Se recoje un puntero de la pantalla principal 
+    int x_sta = 0; // Posicion de inicio de subpantalla
+    int y_sta = 0; // Posicion de inicio de subpantalla
     
 public:
 

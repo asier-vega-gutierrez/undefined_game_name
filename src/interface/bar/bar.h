@@ -4,11 +4,16 @@
 #ifndef _BAR_H_
 #define _BAR_H_
 
+
+// Clase bar es lka interfaz de la derecha (es un menu donde se muestra inforamcion)
 class Bar: public Interface {
 
 private:
+    // Todo lo que se meta en el array se pinta por pantalla
     static const int menu_elements = 7;
     StringItem menu[menu_elements];
+
+    // Variables de este menu
     int health = 0;
     int mana = 0;
     int stamina = 0;
@@ -29,7 +34,6 @@ public:
     StringItem* get_menu(){return this->menu;}
     int get_elements(){return this->menu_elements;}
     void update_menu();
-    void reload_menu();
     void set_description(std::string text){this->pos_4.set_text(text);}
     StringItem pos_1_1;
     StringItem pos_2_1;

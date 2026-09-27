@@ -2,6 +2,7 @@
 #include "../../const.h"
 #include <string>
 
+// Carga de los objetos del menu con un valor por defecto
 void Bar::load_menu(){
     this->pos_1_1 = StringItem("Health:", 5 , 2, COLOR_RED_BLACK);
     this->pos_2_1 = StringItem("Mana:", 5 , 3, COLOR_BLUE_BLACK);
@@ -13,10 +14,7 @@ void Bar::load_menu(){
     update_menu();
 }
 
-void Bar::reload_menu(){
-
-}
-
+// Actualizacion, se meten los objetos en el array para que sean pintados
 void Bar::update_menu(){
     this->menu[0] = pos_1_1;
     this->menu[1] = pos_2_1;

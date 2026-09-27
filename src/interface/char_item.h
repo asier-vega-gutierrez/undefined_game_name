@@ -4,9 +4,11 @@
 #ifndef _CHAR_ITEM_H_
 #define _CHAR_ITEM_H_
 
+// Para la interfaz es la unidad minima para un char (elementos de board) 
 class CharItem {
 
 private:
+
     char c = 'a';
     int x = 0;
     int y = 0;

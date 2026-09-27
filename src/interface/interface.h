@@ -3,6 +3,7 @@
 #ifndef _INTERFACE_H_
 #define _INTERFACE_H_
 
+// Esta es la clase principal del que heredan el resto de interfaces (board, bar, render)
 class Interface{
 private:
     std::string title = "";

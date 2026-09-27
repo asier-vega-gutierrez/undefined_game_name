@@ -4,6 +4,7 @@
 #include <string>
 
 
+// Se iniciaaliza un subpantalla con las medidas concretas sobre la principal
 int Render::initialize(WINDOW *win, int x_sta, int y_sta, int x_end, int y_end){
     this->x_sta = x_sta;
     this->y_sta = y_sta;
@@ -11,9 +12,11 @@ int Render::initialize(WINDOW *win, int x_sta, int y_sta, int x_end, int y_end){
     int width = x_end - x_sta;
     this->win = subwin(win, height, width, y_sta, x_sta);
     nodelay(this->win, TRUE);
+    create_box();
     return 0;
 }
 
+// Terminacion
 int Render::terminate(){
     if (this->win){
         delwin(this->win); //eliminar la pantalla
@@ -22,17 +25,20 @@ int Render::terminate(){
     return 0;
 }
 
+// Actualizacion 
 int Render::update(){
     wrefresh(this->win);
     return 0;
 }
 
+// Generacion del borde limite
 int Render::create_box(){
     box(this->win, 0, 0);
     update();
     return 0;
 }
 
+// Funcion para colocar un char
 int Render::set_char(char c, int x, int y, int color_pair){
     wattron(this->win, COLOR_PAIR(color_pair) | A_BOLD);
     mvwaddch(this->win, y, x, c);
@@ -40,6 +46,7 @@ int Render::set_char(char c, int x, int y, int color_pair){
     return 0;
 }
 
+// Funcion para colocar un string
 int Render::set_string(std::string s, int x, int y, int color_pair){
     wattron(this->win, COLOR_PAIR(color_pair) | A_BOLD);
     mvwaddstr(this->win, y, x, s.c_str());

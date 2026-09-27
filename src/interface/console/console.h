@@ -4,9 +4,13 @@
 #ifndef _CONSOLE_H_
 #define _CONSOLE_H_
 
+
+// Calse consola es la interfaz de abajo izquierda (es un menu en el que se seleciona cosas por el usuario)
 class Console: public Interface {
 
 private:
+
+    // Todo lo que se meta en el array se pinta por pantalla
     static const int menu_elements = 5;
     StringItem menu[menu_elements];
 
@@ -26,7 +30,6 @@ public:
     StringItem* get_menu(){return this->menu;}
     int get_elements(){return this->menu_elements;}
     void update_menu();
-    void reload_menu();
     StringItem pos_1;
     StringItem pos_2;
     StringItem pos_3;

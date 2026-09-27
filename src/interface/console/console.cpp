@@ -3,6 +3,7 @@
 #include "../../const.h"
 
 
+// Gestion de la teclas de este menu
 int Console::input_mannagment(int key){
 
     switch(key) {
@@ -16,7 +17,7 @@ int Console::input_mannagment(int key){
             pos_3.set_color(COLOR_RED_WHITE);
             break;
         default:
-            reload_menu();
+            load_menu();
             break;
     }
 
@@ -24,6 +25,7 @@ int Console::input_mannagment(int key){
 }
 
 
+// Carga de los objetos del menu con un valor por defecto
 void Console::load_menu(){
     this->pos_1 = StringItem("Attack", 2, 2, COLOR_RED_BLACK);
     this->pos_2 = StringItem("Defend", 12 , 2, COLOR_RED_BLACK);
@@ -31,13 +33,8 @@ void Console::load_menu(){
     update_menu();
 }
 
-void Console::reload_menu(){
-    pos_1.set_color(COLOR_RED_BLACK);
-    pos_2.set_color(COLOR_RED_BLACK);
-    pos_3.set_color(COLOR_RED_BLACK);
-    update_menu();
-}
 
+// Actualizacion, se meten los objetos en el array para que sean pintados
 void Console::update_menu(){
     this->menu[0] = pos_1;
     this->menu[1] = pos_2;

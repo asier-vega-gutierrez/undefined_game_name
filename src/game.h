@@ -8,25 +8,26 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+
+// Esta es la clase principal de la aplicacion
 class Game{
 
 private:
+
     // ESTADOS
     bool running = false;
 
     // INTERFACE
-    Bar bar = Bar("bar", 90, 0, 120, 30);
-    Console console = Console("console", 0, 25, 90, 30);
-    Board board = Board("board", 0, 0, 90, 25);
-
-    // NCURSES
-    Window window;
-    Render board_render;
-    Render bar_render;
-    Render console_render;
+    Board board = Board("board", 0, 0, 90, 25); // Objeto de interfaz concreto para board
+    Bar bar = Bar("bar", 90, 0, 120, 30); // Objeto de interfaz concreto para bar
+    Console console = Console("console", 0, 25, 90, 30); // Objeto de interfaz concreto para console
     
-
-
+    // NCURSES
+    Window window; // Parantalla principal cosas comunes de ncurses
+    Render board_render; // Render de ncurses para board
+    Render bar_render; // Render de ncurses para bar
+    Render console_render; // Render de ncurses para console
+    
 
 public:
 
@@ -40,13 +41,10 @@ public:
     int initialize();
     int terminate();
     int run();
-    // int print_menus();
-    // int print_board();
-    int print_interface();
 
     int inputs();
-    int control();
     int outputs();
+    int print_interface();
 
 };
 

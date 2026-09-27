@@ -4,9 +4,12 @@
 #ifndef _STRING_ITEM_H_
 #define _STRING_ITEM_H_
 
+
+// Para la interfaz es la unidad minima para un string (elementos de console y bar)
 class StringItem {
 
 private:
+
     std::string text = "";
     int x = 0;
     int y = 0;

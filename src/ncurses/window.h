@@ -2,13 +2,13 @@
 #ifndef _SCREEN_H_
 #define _SCREEN_H_
 
-// Esta clase se ocupa de identificar las propiedaes de la pantalla del usuario
+// Esta clase se ocupa de identificar las propiedaes de la pantalla del usuario y demas inicializaciones de ncurses
 class Window{
 private:
 
-    WINDOW *win = nullptr;
-    int x_max, y_max;
-    int mouse_x_last, mouse_y_last;
+    WINDOW *win = nullptr; // Pantalla principal
+    int x_max, y_max; // Tamaño de pantalla
+    int mouse_x_last, mouse_y_last; // Posicion del objeto clicado con el raton
 
     int create_color_pairs();
     void set_mousemack();
