@@ -6,8 +6,10 @@
 
 const int BOARD_MAX_X = 86;
 const int BOARD_MAX_Y = 23;
-const int BOARD_MIN_X = 2;
-const int BOARD_MIN_Y = 1;
+const int BOARD_MIN_X = 2; // es una desfase grafico
+const int BOARD_MIN_Y = 1; // es un desfase grafico
+
+const int SUM_COLOR_INVERT = 7;
 
 const int COLOR_BLUE_BLACK = 1;
 const int COLOR_RED_BLACK = 2;

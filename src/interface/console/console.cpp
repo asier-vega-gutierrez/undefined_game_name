@@ -8,13 +8,13 @@ int Console::input_mannagment(int key){
 
     switch(key) {
         case KEY_NUMBER_1:
-            pos_1.set_color(COLOR_RED_WHITE);
+            pos_1.set_color(pos_1.get_color() + SUM_COLOR_INVERT);
             break;
         case KEY_NUMBER_2:
-            pos_2.set_color(COLOR_RED_WHITE);
+            pos_2.set_color(pos_2.get_color() + SUM_COLOR_INVERT);
             break;
         case KEY_NUMBER_3:
-            pos_3.set_color(COLOR_RED_WHITE);
+            pos_3.set_color(pos_3.get_color() + SUM_COLOR_INVERT);
             break;
         default:
             load_menu();

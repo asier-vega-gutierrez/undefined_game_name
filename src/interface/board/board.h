@@ -17,6 +17,7 @@ private:
     // Esto alamacena la ultima posicion que el usuario a clicado con el raton
     int x_selected = 0;
     int y_selected = 0;
+    bool has_selection = false;
     
 
 public:

@@ -100,7 +100,7 @@ int Game::print_interface(){
     CharItem** board_chars = board.get_actual();
     for (int i = 0; i < BOARD_MAX_X; i++) {
         for (int j = 0; j < BOARD_MAX_Y; j++) {
-           board_render.set_char(board_chars[i][j].get_char(), board_chars[i][j].get_x(), board_chars[i][j].get_y(), board_chars[i][j].get_color());
+           board_render.set_char(board_chars[i][j].get_char(), board_chars[i][j].get_x() + BOARD_MIN_X, board_chars[i][j].get_y() + BOARD_MIN_Y, board_chars[i][j].get_color());
         }
     }
     // no se borra el puntero por que pertenece a board, el se ocupa de borralo
