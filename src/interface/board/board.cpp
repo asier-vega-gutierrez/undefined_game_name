@@ -11,29 +11,35 @@ void Board::init_fill(){
     // rellenamos todos los punteros
     for (int i = 0; i < BOARD_MAX_X; i++) {
         for (int j = 0; j < BOARD_MAX_Y; j++) {
-        //    this->actual[i][j] = CharItem('a', i+BOARD_MIN_X, j+BOARD_MIN_Y, COLOR_RED_BLACK, "None");
            this->actual[i][j] = CharItem('a', i, j, COLOR_RED_BLACK, "None");
         }
     }
 
 }
 
-// Se alamcena la posicon del ultimo clcik del raton solo si pertenece al board
+// Se alamacena la posicon del ultimo clcik del raton solo si pertenece al board
 void Board::input_mannagment(int key, int raw_mouse_x, int raw_mouse_y){
 
     if (key == KEY_BUTTON1_CLICKED) {
         // Se tiene que tener en cuenta que se pinta desfasado pero el array parte de 0,0
         int mouse_x = raw_mouse_x - BOARD_MIN_X;
         int mouse_y = raw_mouse_y - BOARD_MIN_Y;
-        // Se desselecciona el anterior si es que esta seleccionado
-        if(actual[x_selected][y_selected].get_color() > SUM_COLOR_INVERT){
+        // CASO 1: Vuelves a pulsar la casilla que ya estaba seleccionada, se deselecciona
+        if (has_selection && x_selected == mouse_x && y_selected == mouse_y) {
             actual[x_selected][y_selected].set_color(actual[x_selected][y_selected].get_color() - SUM_COLOR_INVERT);
-        }
-        // Si esta dentro del tablero se seleciona
-        if(mouse_x >= 0 && mouse_y >= 0 && mouse_x < BOARD_MAX_X && mouse_y < BOARD_MAX_Y ) { 
+            has_selection = false;
+        } 
+        // CASO 2: Pulsas en una nueva casilla (o no había ninguna seleccionada)
+        else {
+            // Si ya había una seleccionada previamente, la deseleccionamos primero
+            if (has_selection) {
+                actual[x_selected][y_selected].set_color(actual[x_selected][y_selected].get_color() - SUM_COLOR_INVERT);
+            }
+            // Seleccionamos la nueva casilla
             this->x_selected = mouse_x;
             this->y_selected = mouse_y;
             actual[x_selected][y_selected].set_color(actual[x_selected][y_selected].get_color() + SUM_COLOR_INVERT);
+            has_selection = true;
         }
     }
     
