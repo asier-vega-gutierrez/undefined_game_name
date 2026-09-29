@@ -3,6 +3,7 @@
 #include "interface/bar/bar.h"
 #include "ncurses/render.h"
 #include "ncurses/window.h"
+#include "log.h"
 #include "const.h"
 
 #ifndef _GAME_H_
@@ -23,10 +24,14 @@ private:
     Console console = Console("console", 0, 25, 90, 30); // Objeto de interfaz concreto para console
     
     // NCURSES
-    Window window; // Parantalla principal cosas comunes de ncurses
+    Window window; // Pantalla principal cosas comunes de ncurses
     Render board_render; // Render de ncurses para board
     Render bar_render; // Render de ncurses para bar
     Render console_render; // Render de ncurses para console
+
+    // LOG
+    Log log = Log();
+
     
 
 public:

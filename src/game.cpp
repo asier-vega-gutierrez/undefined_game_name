@@ -7,6 +7,7 @@
 #include "ncurses/render.h"
 #include "ncurses/window.h"
 #include "const.h"
+#include "log.h"
 
 #include "game.h"
 
@@ -89,6 +90,7 @@ int Game::outputs(){
     std::string s = "hola";
     board.set_actual('@', 5, 5, COLOR_BLUE_BLACK, s);
 
+    log.write("test");
 
     return 0;
 }
