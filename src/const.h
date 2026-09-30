@@ -11,6 +11,10 @@ static const int BOARD_MAX_Y = 23;
 static const int BOARD_MIN_X = 2; // es una desfase grafico
 static const int BOARD_MIN_Y = 1; // es un desfase grafico
 
+static const int BAR_DESCRIPTION_START_Y = 9;
+static const int BAR_DESCRIPTION_MAX_X = 22;
+
+
 static const int SUM_COLOR_INVERT = 7;
 
 static const int COLOR_BLUE_BLACK = 1;

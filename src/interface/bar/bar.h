@@ -10,7 +10,7 @@ class Bar: public Interface {
 
 private:
     // Todo lo que se meta en el array se pinta por pantalla
-    static const int menu_elements = 7;
+    static const int menu_elements = 15;
     StringItem menu[menu_elements];
 
     // Variables de este menu
@@ -34,7 +34,8 @@ public:
     StringItem* get_menu(){return this->menu;}
     int get_elements(){return this->menu_elements;}
     void update_menu();
-    void set_description(std::string text){this->pos_4.set_text(text);}
+    void set_description(std::string text);
+    int count_chars_of_string(std::string str);
     StringItem pos_1_1;
     StringItem pos_2_1;
     StringItem pos_3_1;
@@ -42,6 +43,14 @@ public:
     StringItem pos_2_2;
     StringItem pos_3_2;
     StringItem pos_4;
+    StringItem pos_5;
+    StringItem pos_6;
+    StringItem pos_7;
+    StringItem pos_8;
+    StringItem pos_9;
+    StringItem pos_10;
+    StringItem pos_11;
+    StringItem pos_12;
 
 
     

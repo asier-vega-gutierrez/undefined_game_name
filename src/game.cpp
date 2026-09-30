@@ -87,7 +87,7 @@ int Game::inputs(){
 int Game::outputs(){
 
     //BORRAR
-    std::string s = "hola";
+    std::string s = "hola hola hola hola hola hola";
     board.set_actual('@', 5, 5, COLOR_BLUE_BLACK, s);
 
     log.write("test");
