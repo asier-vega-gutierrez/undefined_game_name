@@ -32,6 +32,10 @@ private:
     // LOG
     Log log = Log();
 
+
+    //temporal
+    bool onece = false;
+
     
 
 public:

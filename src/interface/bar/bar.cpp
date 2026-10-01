@@ -44,36 +44,62 @@ void Bar::update_menu(){
 
 
 void Bar::set_description(std::string text){
-    // this->pos_5.set_text(text);
+
+
+    if (text.empty()) {
+        this->update_menu();
+        return;
+    }
+
+
+    //TODO como funcion aparte
+    // auto pad_to_width = [](std::string value) {
+    //     if (value.length() < BAR_DESCRIPTION_MAX_X) {
+    //         value.append(BAR_DESCRIPTION_MAX_X - value.length(), ' ');
+    //     }
+    //     return value;
+    // };
+
     std::string sentence[8] = {};
     std::string current_word = "";
-    bool sentence_full = false;
-
     int sentence_num = 0;
+
     for (char c : text) {
+        if (sentence_num >= 8) break;
         sentence[sentence_num] += c;
-        current_word +=c;
+        current_word += c;
+
+        //TODO borra la palabra que se sale
         if (c == ' ') {
-            if (sentence[sentence_num].length() >= BAR_DESCRIPTION_MAX_X) {
-                sentence_full = true;
-                for(int i = 0; i < current_word.length(); i++){
+            if (sentence[sentence_num].length() > BAR_DESCRIPTION_MAX_X) {
+                for (int i = 0; i < static_cast<int>(current_word.length()); ++i) {
                     sentence[sentence_num].pop_back();
                 }
-                sentence_num += 1;
-                if (sentence_num < 8){
+                ++sentence_num;
+                if (sentence_num < 8) {
                     sentence[sentence_num] += current_word;
                 }
             }
             current_word = "";
         }
     }
-    this->pos_5.set_text(sentence[0]);
-    this->pos_6.set_text(sentence[1]);
-    this->pos_7.set_text(sentence[2]);
-    this->pos_8.set_text(sentence[3]);
-    this->pos_9.set_text(sentence[4]);
-    this->pos_10.set_text(sentence[5]);
-    this->pos_11.set_text(sentence[6]);
-    this->pos_12.set_text(sentence[7]);
 
+    this->pos_5.set_text(pad_to_width(sentence[0]));
+    this->pos_6.set_text(pad_to_width(sentence[1]));
+    this->pos_7.set_text(pad_to_width(sentence[2]));
+    this->pos_8.set_text(pad_to_width(sentence[3]));
+    this->pos_9.set_text(pad_to_width(sentence[4]));
+    this->pos_10.set_text(pad_to_width(sentence[5]));
+    this->pos_11.set_text(pad_to_width(sentence[6]));
+    this->pos_12.set_text(pad_to_width(sentence[7]));
+
+    this->update_menu();
 }
+
+
+std::string Bar::pad_to_width(std::string value) {
+    if (value.length() < BAR_DESCRIPTION_MAX_X) {
+        value.append(BAR_DESCRIPTION_MAX_X - value.length(), ' ');
+    }
+    return value;
+};

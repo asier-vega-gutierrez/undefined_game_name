@@ -36,6 +36,7 @@ public:
     void update_menu();
     void set_description(std::string text);
     int count_chars_of_string(std::string str);
+    std::string pad_to_width(std::string value);
     StringItem pos_1_1;
     StringItem pos_2_1;
     StringItem pos_3_1;
