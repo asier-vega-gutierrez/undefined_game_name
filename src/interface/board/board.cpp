@@ -20,10 +20,10 @@ void Board::init_fill(){
 // Se alamacena la posicon del ultimo clcik del raton solo si pertenece al board
 void Board::input_mannagment(int key, int raw_mouse_x, int raw_mouse_y){
 
-    if (key == KEY_BUTTON1_CLICKED) {
-        // Se tiene que tener en cuenta que se pinta desfasado pero el array parte de 0,0
-        int mouse_x = raw_mouse_x - BOARD_MIN_X;
-        int mouse_y = raw_mouse_y - BOARD_MIN_Y;
+    // Se tiene que tener en cuenta que se pinta desfasado pero el array parte de 0,0
+    int mouse_x = raw_mouse_x - BOARD_MIN_X;
+    int mouse_y = raw_mouse_y - BOARD_MIN_Y;
+    if (key == KEY_BUTTON1_CLICKED && mouse_x < BOARD_MAX_X && mouse_y < BOARD_MAX_Y) {
         // CASO 1: Vuelves a pulsar la casilla que ya estaba seleccionada, se deselecciona
         if (has_selection && x_selected == mouse_x && y_selected == mouse_y) {
             actual[x_selected][y_selected].set_color(actual[x_selected][y_selected].get_color() - SUM_COLOR_INVERT);
