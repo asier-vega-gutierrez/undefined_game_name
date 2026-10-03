@@ -42,37 +42,25 @@ void Bar::update_menu(){
     this->menu[14] = pos_12;
 }
 
-
+// Pone un texto en la descripcion del cursor tiene un maximo horizontal y vertical
 void Bar::set_description(std::string text){
 
-
-    if (text.empty()) {
-        this->update_menu();
-        return;
-    }
-
-
-    //TODO como funcion aparte
-    // auto pad_to_width = [](std::string value) {
-    //     if (value.length() < BAR_DESCRIPTION_MAX_X) {
-    //         value.append(BAR_DESCRIPTION_MAX_X - value.length(), ' ');
-    //     }
-    //     return value;
-    // };
-
-    std::string sentence[8] = {};
-    std::string current_word = "";
+    std::string sentence[8] = {}; //cada frase es una linea
+    std::string current_word = ""; //aaui se guarda la palabra actual
     int sentence_num = 0;
 
+    // Se itera por cada letra del texto en busca de espacios
     for (char c : text) {
+        // Si se llega al maximo se descarta el resto del texto
         if (sentence_num >= 8) break;
+
         sentence[sentence_num] += c;
         current_word += c;
 
-        //TODO borra la palabra que se sale
         if (c == ' ') {
+            // Si se supero la distancia horizontal maxima se borra de la frase actual y se mete en la siguiente
             if (sentence[sentence_num].length() > BAR_DESCRIPTION_MAX_X) {
-                for (int i = 0; i < static_cast<int>(current_word.length()); ++i) {
+                for (int i = 0; i < current_word.length(); ++i) {
                     sentence[sentence_num].pop_back();
                 }
                 ++sentence_num;
@@ -96,7 +84,7 @@ void Bar::set_description(std::string text){
     this->update_menu();
 }
 
-
+// Esto devuelve el texto con la anchura de BAR_DESCRIPTION_MAX_X para asi borrar el texto anteriror
 std::string Bar::pad_to_width(std::string value) {
     if (value.length() < BAR_DESCRIPTION_MAX_X) {
         value.append(BAR_DESCRIPTION_MAX_X - value.length(), ' ');
