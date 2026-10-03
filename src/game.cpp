@@ -118,8 +118,12 @@ int Game::print_interface(){
     }
 
     // Por separado se le la descipcion del elelemento de board seleccionado, ya que es un elemento unico
-    CharItem tile = board.get_selected_tile();
-    bar.set_description(tile.get_description());
+    if (board.get_has_selection()){
+        CharItem tile = board.get_selected_tile();
+        bar.set_description(tile.get_description());
+    } else{
+        bar.set_description("");
+    }
 
     // Lectura del bar y adpatacion al formato del render
     StringItem* bar_menu = bar.get_menu();

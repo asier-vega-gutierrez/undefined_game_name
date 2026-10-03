@@ -23,7 +23,7 @@ void Board::input_mannagment(int key, int raw_mouse_x, int raw_mouse_y){
     // Se tiene que tener en cuenta que se pinta desfasado pero el array parte de 0,0
     int mouse_x = raw_mouse_x - BOARD_MIN_X;
     int mouse_y = raw_mouse_y - BOARD_MIN_Y;
-    if (key == KEY_BUTTON1_CLICKED && mouse_x < BOARD_MAX_X && mouse_y < BOARD_MAX_Y) {
+    if (key == KEY_BUTTON1_CLICKED && mouse_x < BOARD_MAX_X && mouse_y < BOARD_MAX_Y && mouse_x > -1 && mouse_y > -1) {
         // CASO 1: Vuelves a pulsar la casilla que ya estaba seleccionada, se deselecciona
         if (has_selection && x_selected == mouse_x && y_selected == mouse_y) {
             actual[x_selected][y_selected].set_color(actual[x_selected][y_selected].get_color() - SUM_COLOR_INVERT);

@@ -35,6 +35,7 @@ public:
     void init_fill();
     CharItem** get_actual(){return this->actual;}
     CharItem get_selected_tile(){return actual[this->x_selected][this->y_selected];}
+    bool get_has_selection(){return this->has_selection;}
 
     // INPUT
     void input_mannagment(int key, int mouse_x, int mouse_y);
